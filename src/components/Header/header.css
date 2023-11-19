@@ -1,0 +1,12 @@
+.navbar {
+    height: 50px;
+    background-color: #003580;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    width: 100%;
+    background-color: red;
+}
+
