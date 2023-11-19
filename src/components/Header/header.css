@@ -1,13 +1,12 @@
 .navbar {
     height: 50px;
     background-color: #003580;
-    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .container {
-    padding: 1rem;
     color: white;
     display: flex;
     align-items: center;

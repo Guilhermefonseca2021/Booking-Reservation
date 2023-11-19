@@ -21,7 +21,15 @@ interface DateProps {
   };
 }
 
-export default function ControlHeader() {
+interface HandleOptionProps {
+  name: "adult" | "children" | "room"; // Apenas essas três opções são permitidas
+  operation: "i" | "d"; // Apenas 'i' ou 'd' são permitidos
+}
+interface RenderProps {
+  controls?: boolean;
+}
+
+export default function ControlHeader({ controls }: RenderProps) {
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -34,17 +42,31 @@ export default function ControlHeader() {
     date[0].endDate,
     "MM/dd/yyyy"
   )}`;
-  const [openOption, setOptions] = useState(false);
-  const [options, setOption] = useState({
+  const [openOptions, setOpenOptions] = useState(false);
+  const [options, setOptions] = useState({
     adult: 1,
     children: 0,
     room: 1,
   });
 
+  function handleOption({ name, operation }: HandleOptionProps) {
+    setOptions((prevState) => {
+      return {
+        ...prevState,
+        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+      };
+    });
+  }
+  let classes = "container";
+
+  if (controls) {
+    classes += "headerContainer listMode";
+  }
+
   return (
     <div className="header">
-      <div className="container">
-        <div className="headerList">
+      <div className="">
+        <div className={classes}>
           <div className="headerList">
             <div className="headerListItem active">
               <FaBed />
@@ -69,73 +91,136 @@ export default function ControlHeader() {
           </div>
         </div>
       </div>
-      <h1 className="headerTitle">A lifetime of discounts? It's genius. </h1>
-      <p className="headerDesc">
-        Get rewrdeed for you travels unlock instant savings of 10% or with a
-        free ticketbooking in a company
-      </p>
-      <button className="headerBtn">Sign in/ Register</button>
-      <div className="headerSearch">
-        <div className="headerSearchItem">
-          <FaBed className="headerIcon" />
-          <input
-            type="text"
-            placeholder="where are you going?"
-            className="headerSearchInput"
-          />
-        </div>
-        <div className="headerSearchItem">
-          <FaCalendarDay className="headerIcon" />
-          <span
-            className="headerSearchText"
-            onClick={() => setOpenDate(!openDate)}
-          >
-            {formatDate}
-          </span>
-          {openDate && (
-            <DateRange
-              className="date"
-              editableDateInputs={true}
-              onChange={(item: DateProps) => setDate([item.selection])}
-              moveRangeOnFirstSelection={false}
-              ranges={date}
-            />
-          )}
-        </div>
-        <div className="headerSearchItem">
-          <FaPersonBooth className="headerIcon" />
-          <span className="headerSearchText">{`${options.adult} adult - ${options.children} - children ${options.room} room(s)`}</span>
-          <div className="options">
-            <div className="optionsItem">
-              <span className="optionText">Adult</span>
-              <div className="optionCounter">
-                <button className="optionCounterButton">-</button>
-                <span className="optionCounterNumber">1</span>
-                <button className="optionCounterButton">+</button>
-              </div>
+      {controls && (
+        <>
+          <h1 className="headerTitle">
+            A lifetime of discounts? It's genius.{" "}
+          </h1>
+          <p className="headerDesc">
+            Get rewrdeed for you travels unlock instant savings of 10% or with a
+            free ticketbooking in a company
+          </p>
+          <button className="headerBtn">Sign in/ Register</button>
+          <div className="headerSearch">
+            <div className="headerSearchItem">
+              <FaBed className="headerIcon" />
+              <input
+                type="text"
+                placeholder="where are you going?"
+                className="headerSearchInput"
+              />
             </div>
-            <div className="optionsItem">
-              <span className="optionText">Children</span>
-              <div className="optionCounter">
-                <button className="optionCounterButton"> - </button>
-                <span className="optionCounterNumber">0</span>
-                <button className="optionCounterButton">+</button>
-              </div>
+            <div className="headerSearchItem">
+              <FaCalendarDay className="headerIcon" />
+              <span
+                className="headerSearchText"
+                onClick={() => setOpenDate(!openDate)}
+              >
+                {formatDate}
+              </span>
+              {openDate && (
+                <DateRange
+                  className="date"
+                  editableDateInputs={true}
+                  onChange={(item: DateProps) => setDate([item.selection])}
+                  moveRangeOnFirstSelection={false}
+                  ranges={date}
+                />
+              )}
             </div>
-            <div className="optionsItem">
-              <span className="optionText">Room</span>
-              <div className="optionCounter">
-                <button className="optionCounterButton">-</button>
-                <span className="optionCounterNumber">1</span>
-                <button className="optionCounterButton">+</button>
-              </div>
+            <div className="headerSearchItem">
+              <FaPersonBooth className="headerIcon" />
+              <span
+                onClick={() => setOpenOptions(!openOptions)}
+                className="headerSearchText"
+              >{`${options.adult} adult - ${options.children} - children ${options.room} room(s)`}</span>
+              {openOptions && (
+                <div className="options">
+                  <div className="optionsItem">
+                    <span className="optionText">Adult</span>
+                    <div className="optionCounter">
+                      <button
+                        disabled={options.adult <= 1}
+                        className="optionCounterButton"
+                        onClick={() =>
+                          handleOption({ name: "adult", operation: "d" })
+                        }
+                      >
+                        -
+                      </button>
+                      <span className="optionCounterNumber">
+                        {options.adult}
+                      </span>
+                      <button
+                        className="optionCounterButton"
+                        onClick={() =>
+                          handleOption({ name: "adult", operation: "i" })
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="optionsItem">
+                    <span className="optionText">Children</span>
+                    <div className="optionCounter">
+                      <button
+                        disabled={options.children <= 0}
+                        className="optionCounterButton"
+                        onClick={() =>
+                          handleOption({ name: "children", operation: "d" })
+                        }
+                      >
+                        -
+                      </button>
+                      <span className="optionCounterNumber">
+                        {options.children}
+                      </span>
+                      <button
+                        disabled={options.children <= -1}
+                        className="optionCounterButton"
+                        onClick={() =>
+                          handleOption({ name: "children", operation: "i" })
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="optionsItem">
+                    <span className="optionText">Room</span>
+                    <div className="optionCounter">
+                      <button
+                        disabled={options.room <= 1}
+                        className="optionCounterButton"
+                        onClick={() =>
+                          handleOption({ name: "room", operation: "d" })
+                        }
+                      >
+                        -
+                      </button>
+                      <span className="optionCounterNumber">
+                        {options.room}
+                      </span>
+                      <button
+                        className="optionCounterButton"
+                        onClick={() =>
+                          handleOption({ name: "room", operation: "i" })
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="headerSearchItem">
+              <button className="headerBtn">Search</button>
             </div>
           </div>
-        </div>
-        <div className="headerSearchItem">
-          <button className="headerBtn">Search</button>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }

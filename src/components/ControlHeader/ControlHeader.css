@@ -124,3 +124,7 @@
   cursor: pointer;
   background-color: white;
 }
+
+.optionCounter:disabled {
+  cursor: not-allowed;
+}
