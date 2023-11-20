@@ -1,0 +1,29 @@
+.plist {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.plistItem {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.listImg {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.listTitles > h1 {
+  bottom: 20px;
+  left: 20px;
+}
+
+.listTitles > h2 {
+  font-size: 14px;
+}

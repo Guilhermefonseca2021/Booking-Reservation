@@ -12,6 +12,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
+import { NavLink } from "react-router-dom";
 
 interface DateProps {
   selection: {
@@ -60,7 +61,7 @@ export default function ControlHeader({ controls }: RenderProps) {
   let classes = "container";
 
   if (controls) {
-    classes += "headerContainer listMode";
+    classes += "list listMode";
   }
 
   return (
@@ -68,14 +69,14 @@ export default function ControlHeader({ controls }: RenderProps) {
       <div className="">
         <div className={classes}>
           <div className="headerList">
-            <div className="headerListItem active">
+            <NavLink to='/' className="headerListItem">
               <FaBed />
               <span>Attractions</span>
-            </div>
-            <div className="headerListItem">
+              </NavLink>
+            <NavLink to='/list' className="headerListItem">
               <FaTaxi />
-              <span>Airport taxis</span>
-            </div>
+              <span>Airport taxis</span> 
+            </NavLink>
             <div className="headerListItem">
               <FaBed />
               <span>Stays</span>
@@ -97,8 +98,8 @@ export default function ControlHeader({ controls }: RenderProps) {
             A lifetime of discounts? It's genius.{" "}
           </h1>
           <p className="headerDesc">
-            Get rewrdeed for you travels unlock instant savings of 10% or with a
-            free ticketbooking in a company
+            Get rewardeed for you travels unlock instant savings of 10% or with a
+            free ticketbooking in a company.www
           </p>
           <button className="headerBtn">Sign in/ Register</button>
           <div className="headerSearch">

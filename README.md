@@ -38,7 +38,7 @@ antes de comecar voce precisa ter instalado as seguintes ferramentas: [Git](http
 
 ```js
 // Clone o repositório para o seu ambiente de desenvolvimento local.
-$  git clone https://github.com/guilhermefonseca2021/bookin-app
+$  git clone https://github.com/Guilhermefonseca2021/Booking-Reservation.git
 
 // abra a pasta
 $  cd front end
@@ -52,7 +52,7 @@ $  npm run dev
 
 <a href="">Testar aplicacao agora. </a>
 
-made with 💜 by GUILHERME FONSECA 👋 [See my linked-in]()
+made with 💜 by GUILHERME FONSECA 👋 [See my linked-in](www.linkedin.com/in/guilherme-fonseca-dos-santos-a49594207)
 
 ## Insigths
 
