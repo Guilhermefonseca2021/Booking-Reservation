@@ -52,7 +52,7 @@ $  npm run dev
 
 <a href="">Testar aplicacao agora. </a>
 
-made with 💜 by GUILHERME FONSECA 👋 [See my linked-in](www.linkedin.com/in/guilherme-fonseca-dos-santos-a49594207)
+made with 💜 by GUILHERME FONSECA 👋 [See my linked-in](https://www.linkedin.com/in/guilherme-fonseca-dos-santos-a49594207/)
 
 ## Insigths
 
