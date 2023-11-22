@@ -1,0 +1,92 @@
+.listContainer {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.listWrapper {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+
+  gap: 20px;
+}
+
+.listSearch {
+  flex: 1;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #febb02;
+  position: sticky;
+  top: 10px;
+}
+
+.listResult {
+  flex: 3;
+}
+
+.listTitle {
+  font-size: 20px;
+  color: #555;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.listItem > input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: none;
+  position: relative;
+}
+
+.listItem > span {
+  border-radius: 8px;
+  padding: 0.5rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.date {
+  display: absolute;
+  top: 170px;
+}
+
+.listOptions {
+  padding: 10px;
+}
+
+.listOptionItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 1rem;
+}
+
+.listOptionInput {
+  width: 50px;
+}
+
+.listSearch > button {
+  padding: 10px;
+  background-color: #0071c2;
+  color: white;
+  border: none;
+  width: 100%;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.listResult {
+  flex: 3;
+}

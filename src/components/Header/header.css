@@ -1,20 +1,27 @@
-.navbar {
+.navbar{
+  height: 50px;
   background-color: #003580;
-  color: white;
   display: flex;
-  padding: 1rem;
-  flex-direction: column;
   justify-content: center;
-  position: relative;
 }
 
-.container {
-  display: flex;
+.navContainer{
   width: 100%;
   max-width: 1024px;
-  margin: 20px 0px 10px 0px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.logo {
-  flex: 1;
+.logo{
+  font-weight: 500;
+}
+
+.navButton{
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #003580;
 }

@@ -20,7 +20,9 @@
 
 .headerList {
   display: flex;
-  gap: 40px;
+  position: absolute;
+  top: 0;
+  gap: 1rem;
   margin-bottom: 10px;
 }
 
@@ -38,7 +40,12 @@
   border-radius: 20px;
 }
 
+.headerTitle {
+  margin-top: 2rem;
+}
+
 .headerDesc {
+  margin-top: 5rem;
   margin: 20px 0px;
 }
 
@@ -54,8 +61,7 @@
 
 .headerSearch {
   height: 30px;
-  width: 95%;
-  margin: auto;
+  width: 98%;
   background-color: white;
   border: 2px solid #febb02;
   display: flex;

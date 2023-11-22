@@ -12,7 +12,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 interface DateProps {
   selection: {
@@ -31,6 +31,7 @@ interface RenderProps {
 }
 
 export default function ControlHeader({ controls }: RenderProps) {
+  const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -58,10 +59,16 @@ export default function ControlHeader({ controls }: RenderProps) {
       };
     });
   }
+  const navigate = useNavigate();
+
   let classes = "container";
 
   if (controls) {
     classes += "list listMode";
+  }
+
+  function handleSearch() {
+    navigate("/list", { state: {destination, date, options} });
   }
 
   return (
@@ -69,13 +76,13 @@ export default function ControlHeader({ controls }: RenderProps) {
       <div className="">
         <div className={classes}>
           <div className="headerList">
-            <NavLink to='/' className="headerListItem">
+            <NavLink to="/" className="headerListItem">
               <FaBed />
               <span>Attractions</span>
-              </NavLink>
-            <NavLink to='/list' className="headerListItem">
+            </NavLink>
+            <NavLink to="/list" className="headerListItem">
               <FaTaxi />
-              <span>Airport taxis</span> 
+              <span>Airport taxis</span>
             </NavLink>
             <div className="headerListItem">
               <FaBed />
@@ -98,8 +105,8 @@ export default function ControlHeader({ controls }: RenderProps) {
             A lifetime of discounts? It's genius.{" "}
           </h1>
           <p className="headerDesc">
-            Get rewardeed for you travels unlock instant savings of 10% or with a
-            free ticketbooking in a company.www
+            Get rewardeed for you travels unlock instant savings of 10% or with
+            a free ticketbooking in a company.www
           </p>
           <button className="headerBtn">Sign in/ Register</button>
           <div className="headerSearch">
@@ -109,6 +116,7 @@ export default function ControlHeader({ controls }: RenderProps) {
                 type="text"
                 placeholder="where are you going?"
                 className="headerSearchInput"
+                onChange={e => setDestination(e.target.value)}
               />
             </div>
             <div className="headerSearchItem">
@@ -217,7 +225,9 @@ export default function ControlHeader({ controls }: RenderProps) {
               )}
             </div>
             <div className="headerSearchItem">
-              <button className="headerBtn">Search</button>
+              <button className="headerBtn" onClick={handleSearch}>
+                Search
+              </button>
             </div>
           </div>
         </>
