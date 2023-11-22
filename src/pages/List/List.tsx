@@ -5,6 +5,7 @@ import { DateRange } from "react-date-range";
 import "./list.css";
 import { useState } from "react";
 import { format } from "date-fns";
+import SearchItem from "../../components/SearchItem/SearchItem";
 
 interface DateProps {
   selection: {
@@ -114,11 +115,20 @@ export default function List() {
                     />
                   </div>
                 </div>
+                <button className="listSearchBtn">Search</button>
               </div>
-              <button>Search</button>
             </div>
           </div>
-          <div className="listResult"></div>
+          <div className="listResult">
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+          </div>
         </div>
       </div>
     </>

@@ -84,10 +84,10 @@ export default function ControlHeader({ controls }: RenderProps) {
               <FaTaxi />
               <span>Airport taxis</span>
             </NavLink>
-            <div className="headerListItem">
+            <NavLink to="hotels" className="headerListItem">
               <FaBed />
               <span>Stays</span>
-            </div>
+            </NavLink>
             <div className="headerListItem">
               <FaCar />
               <span>Car rental</span>
